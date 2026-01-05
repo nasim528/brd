@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday  ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:linear-gradient(to bottom,#fff0f5,#ffe4ec);}
+
+/* HERO */
+header{
+height:100vh;
+background:#f8a4c1;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+header h1{
+font-size:42px;
+text-shadow:0 0 25px #ff69b4;
+animation:fadeUp 2s ease;
+}
+header p{
+margin-top:15px;
+font-size:18px;
+animation:fadeUp 3s ease;
+}
+
+/* SECTIONS */
+section{
+padding:70px 20px;
+max-width:1000px;
+margin:auto;
+text-align:center;
+}
+
+h2{color:#c2185b;margin-bottom:25px;font-size:28px;}
+p{font-size:16px;line-height:1.8;}
+
+.fade{opacity:0;transform:translateY(30px);transition:1s;}
+.fade.show{opacity:1;transform:translateY(0);}
+
+/* REASONS */
+.reasons{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.reason{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+/* MEMORIES */
+.memories{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.memories img, .memories video{
+width:320px;
+max-width:100%;
+border-radius:15px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+/* Lightbox */
+#lightbox{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:1000;
+}
+
+#lightbox img,#lightbox video{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+
+/* FOOTER */
+footer{
+background:#c2185b;
+color:white;
+padding:25px;
+text-align:center;
+}
+
+/* MUSIC */
+#musicBtn{
+position:fixed;
+right:15px;
+bottom:20px;
+background:#c2185b;
+color:white;
+border:none;
+border-radius:50%;
+width:55px;
+height:55px;
+font-size:22px;
+cursor:pointer;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+@media(max-width:600px){
+header h1{font-size:30px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<!-- Auto Background Music -->
+<audio id="bgMusic" autoplay loop>
+<source src="pehelebi.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn">⏸</button>
+
+<header>
+<div>
+<h1>Happy Birthday Akhi ❤️</h1>
+<p>The most beautiful chapter of my life started when you came into it.</p>
+</div>
+</header>
+
+<section class="fade">
+<h2>Our Love Story</h2>
+<p>
+From the day I met you Akhi, my life changed forever.  
+Your smile brought light into my world and your love gave my heart a home.  
+Every moment with you feels special, and every day I fall in love with you all over again.
+</p>
+</section>
+
+<section class="fade">
+<h2>Why I Love You</h2>
+<div class="reasons">
+<div class="reason">Your smile makes my heart feel calm.</div>
+<div class="reason">Your love makes my world beautiful.</div>
+<div class="reason">You understand me without words.</div>
+<div class="reason">You make even small moments magical.</div>
+<div class="reason">You are my peace and my happiness.</div>
+<div class="reason">With you, I feel complete.</div>
+</div>
+</section>
+
+<section class="fade">
+<h2>Birthday Message</h2>
+<p>
+Happy Birthday my love Akhi.  
+May your life be filled with happiness, love, and success.  
+I dream of a future where we grow together, support each other, and build a beautiful life side by side.
+</p>
+</section>
+
+<section class="fade">
+<h2>Our Memories</h2>
+<div class="memories">
+<img src="akhi.jpg" onclick="openLightbox(this.src,'img')" width="350"height="500">
+<video src="akhi.mp4" onclick="openLightbox(this.src,'video')" width="350"height="500" controls></video>
+</div>
+</section>
+
+<section class="fade">
+<h2>Future Promise</h2>
+<p>
+I promise to stay by your side in every situation,  
+to support your dreams, and to love you more with every heartbeat.
+</p>
+</section>
+
+<footer>
+Made with love only for Akhi – From Nasim 💕
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()"></div>
+
+<script>
+// fade
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".fade").forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight-100){
+el.classList.add("show");
+}
+});
+});
+
+// autoplay fix
+const music=document.getElementById("bgMusic");
+window.addEventListener("click",()=>{
+music.muted=false;
+music.play();
+});
+
+document.getElementById("musicBtn").onclick=()=>{
+music.paused?music.play():music.pause();
+};
+
+function openLightbox(src,type){
+const lb=document.getElementById("lightbox");
+lb.style.display="flex";
+lb.innerHTML = type==="img"
+? `<img src="${src}">`
+: `<video src="${src}" controls autoplay></video>`;
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+</script>
+
+</body>
+</html>
